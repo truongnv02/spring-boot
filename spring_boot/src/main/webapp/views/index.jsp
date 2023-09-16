@@ -39,31 +39,32 @@
         </form>
 
         <table class="table">
-            <tr>
-                <th>STT</th>
-                <th>MSSV</th>
-                <th>Tên</th>
-                <th>Tuổi</th>
-                <th>Địa chỉ</th>
-                <th>Giới tính</th>
-                <th colspan="2">Action</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>MSSV</th>
+                    <th>Tên</th>
+                    <th>Tuổi</th>
+                    <th>Địa chỉ</th>
+                    <th>Giới tính</th>
+                    <th colspan="2">Action</th>
+                </tr>
             </thead>
             <tbody>
-            <c:forEach items="${listSinhVien}" var="sv" varStatus="viTri">
-                <tr>
-                    <td>${viTri.index}</td>
-                    <td>${sv.mssv}</td>
-                    <td>${sv.ten}</td>
-                    <td>${sv.tuoi}</td>
-                    <td>${sv.diaChi}</td>
-                    <td>${sv.gioiTinh}</td>
-                    <td>
-                        <a href="/sinh-vien/delete/${sv.mssv}" class="btn btn-primary">Delete</a>
-                        <a href="/sinh-vien/detail/${sv.mssv}" class="btn btn-primary">Detail</a>
-                    </td>
-                </tr>
-            </c:forEach>
+                <c:forEach items="${listSinhVien}" var="sv" varStatus="viTri">
+                    <tr>
+                        <td>${viTri.index}</td>
+                        <td>${sv.mssv}</td>
+                        <td>${sv.ten}</td>
+                        <td>${sv.tuoi}</td>
+                        <td>${sv.diaChi}</td>
+                        <td>${sv.gioiTinh}</td>
+                        <td>
+                            <a href="/sinh-vien/remove/${sv.mssv}" class="btn btn-primary">Delete</a>
+                            <a href="/sinh-vien/detail/${sv.mssv}" class="btn btn-primary">Detail</a>
+                        </td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>
