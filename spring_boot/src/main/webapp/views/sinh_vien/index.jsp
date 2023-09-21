@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Title</title>
@@ -7,36 +8,41 @@
 </head>
 <body>
     <div class="container">
-        <form action="/sinh-vien/add" method="post">
+        <f:form action="/sinh-vien/add" modelAttribute="sv" method="post">
             <div class="mb-3">
                 <label class="form-label">Mã số sinh viên</label>
-                <input type="text" class="form-control" name="mssv">
+                <f:input type="text" class="form-control" path="mssv" />
+                <f:errors path="mssv" element="span" cssClass="text-danger" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Tên</label>
-                <input type="text" class="form-control" name="ten">
+                <f:input type="text" class="form-control" path="ten" />
+                <f:errors path="ten" element="span" cssClass="text-danger" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Tuổi</label>
-                <input type="text" class="form-control" name="tuoi">
+                <f:input type="text" class="form-control" path="tuoi" />
+                <f:errors path="tuoi" element="span" cssClass="text-danger" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Địa chỉ</label>
-                <input type="text" class="form-control" name="diaChi">
+                <f:input type="text" class="form-control" path="diaChi" />
+                <f:errors path="diaChi" element="span" cssClass="text-danger" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Giới tính</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gioiTinh" value="true" checked>
+                    <f:radiobutton class="form-check-input" path="gioiTinh" value="true" checked="true" />
                     <label class="form-check-label">Nam</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gioiTinh" value="false">
+                    <f:radiobutton class="form-check-input" path="gioiTinh" value="false" />
                     <label class="form-check-label">Nữ</label>
                 </div>
+                <f:errors path="gioiTinh" element="span" cssClass="text-danger" />
             </div>
             <button type="submit" class="btn btn-primary">ADD</button>
-        </form>
+        </f:form>
 
         <table class="table">
             <thead>
@@ -60,8 +66,11 @@
                         <td>${sv.diaChi}</td>
                         <td>${sv.gioiTinh}</td>
                         <td>
-                            <a href="/sinh-vien/remove/${sv.mssv}" class="btn btn-primary">Delete</a>
                             <a href="/sinh-vien/detail/${sv.mssv}" class="btn btn-primary">Detail</a>
+                            <a href="/sinh-vien/remove/${sv.mssv}" class="btn btn-primary"
+                               onclick="return confirm('Bạn có muốn xóa không ?')">
+                                Delete
+                            </a>
                         </td>
                     </tr>
                 </c:forEach>

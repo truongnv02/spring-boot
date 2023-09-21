@@ -48,9 +48,9 @@ public class SinhVienServiceImpl implements SinhVienService {
     }
 
     @Override
-    public void updateSinhVien(String ma, SinhVien sinhVien) {
+    public void updateSinhVien( SinhVien sinhVien) {
         for(int i = 0; i < listSinhVien.size(); i++) {
-            if (listSinhVien.get(i).getMssv().equalsIgnoreCase(ma)) {
+            if (listSinhVien.get(i).getMssv().equalsIgnoreCase(sinhVien.getMssv())) {
                 listSinhVien.set(i, sinhVien);
                 break;
             }

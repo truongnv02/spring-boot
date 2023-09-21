@@ -13,5 +13,5 @@ public interface SinhVienService {
 
     void deleteSinhVien(String ma);
 
-    void updateSinhVien(String ma, SinhVien sinhVien);
+    void updateSinhVien(SinhVien sinhVien);
 }

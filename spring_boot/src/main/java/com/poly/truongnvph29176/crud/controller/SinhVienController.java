@@ -2,10 +2,16 @@ package com.poly.truongnvph29176.crud.controller;
 
 import com.poly.truongnvph29176.crud.model.SinhVien;
 import com.poly.truongnvph29176.crud.service.SinhVienService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,20 +28,25 @@ public class SinhVienController {
     public String hienThiDanhSachSinhVien(Model model) {
         listSinhVien = service.getAll();
         model.addAttribute("listSinhVien", listSinhVien);
-        return "index";
+        model.addAttribute("sv", new SinhVien());
+        return "sinh_vien/index";
     }
 
     @PostMapping("/add")
-    public String add(@ModelAttribute SinhVien sinhVien) {
-        service.addSinhVien(sinhVien);
-        return "redirect:/sinh-vien/hien-thi";
+    public String add(@Valid @ModelAttribute("sv") SinhVien sinhVien, BindingResult result) {
+        if(result.hasErrors()) {
+            return "sinh_vien/index";
+        }else {
+            service.addSinhVien(sinhVien);
+            return "redirect:/sinh-vien/hien-thi";
+        }
     }
 
     @GetMapping("/detail/{mssv}")
     public String detail(@PathVariable("mssv") String ma, Model model) {
         SinhVien sinhVien = service.detailSinhVien(ma);
         model.addAttribute("sv", sinhVien);
-        return "detail";
+        return "sinh_vien/detail";
     }
 
     @GetMapping("/remove/{mssv}")
@@ -46,8 +57,13 @@ public class SinhVienController {
     }
 
     @PostMapping("/update/{mssv}")
-    public String update(@PathVariable("mssv") String ma, @ModelAttribute("sv") SinhVien sinhVien) {
-        service.updateSinhVien(ma, sinhVien);
-        return "redirect:/sinh-vien/hien-thi";
+    public String update(@Valid @ModelAttribute("sv") SinhVien sinhVien, BindingResult result) {
+        if(result.hasErrors()) {
+            return "sinh_vien/detail";
+        }else {
+            service.updateSinhVien(sinhVien);
+            return "redirect:/sinh-vien/hien-thi";
+        }
     }
+
 }
