@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fs" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <title>Title</title>
@@ -8,6 +9,13 @@
 </head>
 <body>
     <div class="container">
+        <f:form action="/sinh-vien/search" modelAttribute="sv" method="post">
+            <div class="mb-3">
+                <label class="form-label">Tên</label>
+                <f:input type="text" path="ten" cssClass="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        </f:form>
         <f:form action="/sinh-vien/add" modelAttribute="sv" method="post">
             <div class="mb-3">
                 <label class="form-label">Mã số sinh viên</label>
@@ -44,6 +52,10 @@
             <button type="submit" class="btn btn-primary">ADD</button>
         </f:form>
 
+        <c:if test="${fs:length(listSinhVien) == 0}">
+            <h4 class="text-center">Không có dữ liệu</h4>
+        </c:if>
+        <c:if test="${fs:length(listSinhVien) != 0}">
         <table class="table">
             <thead>
                 <tr>
@@ -59,7 +71,7 @@
             <tbody>
                 <c:forEach items="${listSinhVien}" var="sv" varStatus="viTri">
                     <tr>
-                        <td>${viTri.index}</td>
+                        <td>${viTri.index + 1}</td>
                         <td>${sv.mssv}</td>
                         <td>${sv.ten}</td>
                         <td>${sv.tuoi}</td>
@@ -76,6 +88,7 @@
                 </c:forEach>
             </tbody>
         </table>
+        </c:if>
     </div>
 </body>
 </html>

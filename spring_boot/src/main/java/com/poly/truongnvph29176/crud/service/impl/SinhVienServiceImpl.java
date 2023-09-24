@@ -42,6 +42,16 @@ public class SinhVienServiceImpl implements SinhVienService {
     }
 
     @Override
+    public SinhVien search(String ten) {
+        for(SinhVien sv : listSinhVien) {
+            if(sv.getTen().equals(ten)) {
+                return sv;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void deleteSinhVien(String ma) {
         SinhVien sv = detailSinhVien(ma);
         listSinhVien.remove(sv);

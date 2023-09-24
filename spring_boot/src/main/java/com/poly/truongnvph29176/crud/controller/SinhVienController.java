@@ -66,4 +66,13 @@ public class SinhVienController {
         }
     }
 
+    @PostMapping("/search")
+    public String search(Model model, @ModelAttribute("sv") SinhVien sinhVien) {
+        SinhVien sv = service.search(sinhVien.getTen());
+        model.addAttribute("sv", sv);
+        listSinhVien = service.getAll();
+        model.addAttribute("listSinhVien", listSinhVien);
+        return "sinh_vien/index";
+    }
+
 }

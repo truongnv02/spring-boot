@@ -11,6 +11,8 @@ public interface SinhVienService {
 
     SinhVien detailSinhVien(String ma);
 
+    SinhVien search(String ten);
+
     void deleteSinhVien(String ma);
 
     void updateSinhVien(SinhVien sinhVien);
