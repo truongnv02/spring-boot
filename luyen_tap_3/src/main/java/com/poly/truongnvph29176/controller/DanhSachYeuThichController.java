@@ -5,6 +5,7 @@ import com.poly.truongnvph29176.entity.DanhSachYeuThich;
 import com.poly.truongnvph29176.entity.KhachHang;
 import com.poly.truongnvph29176.service.DanhSachYeuThichService;
 import com.poly.truongnvph29176.service.KhachHangService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -62,7 +63,7 @@ public class DanhSachYeuThichController {
     }
 
     @PostMapping("/add")
-    public String add(Model model, @ModelAttribute("dsyt") DanhSachYeuThichDTO danhSachYeuThichDTO,
+    public String add(Model model,@Valid @ModelAttribute("dsyt") DanhSachYeuThichDTO danhSachYeuThichDTO,
                       BindingResult result) {
         if(result.hasErrors()) {
             List<KhachHang> listKhachHang = khachHangService.getAll();

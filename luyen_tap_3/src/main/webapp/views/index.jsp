@@ -18,6 +18,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <td>#</td>
                         <td>Mã danh sách</td>
                         <td>Mã khách hàng</td>
                         <td>SDT khách hàng</td>
@@ -27,8 +28,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${listDanhSachYeuThich.content}" var="dsyt">
+                    <c:forEach items="${listDanhSachYeuThich.content}" var="dsyt" varStatus="stt">
+                        <c:set var="readIndex" value="${listDanhSachYeuThich.number * listDanhSachYeuThich.size + stt.index}" />
                         <tr>
+                            <td>${readIndex + 1}</td>
                             <td>${dsyt.ma}</td>
                             <td>${dsyt.khachHang.ma}</td>
                             <td>${dsyt.khachHang.sdt}</td>
