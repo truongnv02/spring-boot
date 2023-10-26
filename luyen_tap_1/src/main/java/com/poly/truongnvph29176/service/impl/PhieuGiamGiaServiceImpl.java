@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Locale;
+import java.util.Random;
 
 @Service
 public class PhieuGiamGiaServiceImpl implements PhieuGiamGiaService {
@@ -54,7 +56,24 @@ public class PhieuGiamGiaServiceImpl implements PhieuGiamGiaService {
     }
 
     @Override
-    public void maTuDong() {
+    public String maTuDong() {
+        String chuThuong = "qwertyuiopasdfghjklzxcvbnm";
+        String chuHoa = chuThuong.toUpperCase();
+        String so = "1234567890";
+        String kiTu = "~!@#$%^&*";
+        Random random = new Random();
+        StringBuilder maPhieuGiamGia = new StringBuilder();
+        for (int  i = 0; i < 4; i++) {
+            maPhieuGiamGia.append(chuThuong.charAt(random.nextInt(chuThuong.length())));
+        }
+        for (int  i = 0; i < 3; i++) {
+            maPhieuGiamGia.append(chuHoa.charAt(random.nextInt(chuHoa.length())));
+        }
+        for (int  i = 0; i < 2; i++) {
+            maPhieuGiamGia.append(so.charAt(random.nextInt(so.length())));
+        }
+        maPhieuGiamGia.append(kiTu.charAt(random.nextInt(kiTu.length())));
 
+        return maPhieuGiamGia.toString();
     }
 }

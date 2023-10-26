@@ -55,7 +55,7 @@
             <button type="submit" class="btn btn-success">ADD</button>
         </f:form>
         <c:if test="${fs:length(listKhachHang.content) == 0}">
-            <h4>Không có dữ liệu</h4>
+            <h4 class="text-center">Không có dữ liệu</h4>
         </c:if>
         <c:if test="${fs:length(listKhachHang.content) != 0}">
         <table class="table">

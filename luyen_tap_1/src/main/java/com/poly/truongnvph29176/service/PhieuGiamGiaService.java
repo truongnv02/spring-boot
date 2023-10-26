@@ -13,5 +13,5 @@ public interface PhieuGiamGiaService {
     PhieuGiamGia findByMaPhieu(String maPhieu);
     Page<PhieuGiamGia> search(Date startDate, Date endDate, Long ma, Pageable pageable);
     void remove(String id);
-    void maTuDong();
+    String maTuDong();
 }
